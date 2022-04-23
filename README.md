@@ -10,3 +10,19 @@ To build the application you must have [rust toolchain installed](https://www.ru
 $ cargo --version
 cargo 1.60.0 (d1fd9fe 2022-03-01)
 ```
+
+In oder to compule the CLI binary run the following command:
+
+```bash
+cargo build
+# Or compile it with optimizations in release mode
+cargo build --release
+```
+
+To run the complied CLI application
+
+```bash
+./target/debug/euro-diffusion ./input.json
+# Or if the binary was compiled in release mode
+./target/release/euro-diffusion ./input.json
+```
