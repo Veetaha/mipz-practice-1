@@ -8,22 +8,22 @@ const MAX_ITER: usize = 100000;
 type CountriesMap = HashMap<String, CountryDimensions>;
 
 #[derive(Deserialize)]
-pub(crate) struct Input {
-    pub(crate) id: u64,
-    pub(crate) countries: CountriesMap,
+pub struct Input {
+    pub id: u64,
+    pub countries: CountriesMap,
 }
 
 #[derive(Deserialize)]
-pub(crate) struct CountryDimensions {
+pub struct CountryDimensions {
     xl: usize,
     yl: usize,
     xh: usize,
     yh: usize,
 }
 
-pub(crate) struct CountryOutput {
-    pub(crate) country_name: String,
-    pub(crate) iter: usize,
+pub struct CountryOutput {
+    pub country_name: String,
+    pub iter: usize,
 }
 
 struct MatrixDimensions {
@@ -84,7 +84,7 @@ impl Matrix {
     }
 }
 
-pub(crate) fn euro_diffusion(countries: &CountriesMap) -> Vec<CountryOutput> {
+pub fn euro_diffusion(countries: &CountriesMap) -> Vec<CountryOutput> {
     let country_matrix_dim = MatrixDimensions::from_map(countries);
     let country_matrix = Matrix::new(country_matrix_dim, countries);
 
