@@ -1,26 +1,9 @@
-mod calc;
-
+use euro_diffusion::{cli, calc};
 use clap::Parser;
-use std::fs;
-use std::path::PathBuf;
-use anyhow::Result;
-
-#[derive(Debug, clap::Parser)]
-#[clap(author, version, about, long_about = None)]
-pub(crate) struct Args {
-    data_path: PathBuf,
-}
-
-impl Args {
-    pub(crate) fn into_inputs(self) -> Result<Vec<crate::calc::Input>> {
-        let data = fs::read_to_string(self.data_path)?;
-        Ok(serde_json::from_str(&data)?)
-    }
-}
 
 
 fn main() -> anyhow::Result<()> {
-    let args = Args::parse();
+    let args = cli::Args::parse();
 
     let inputs = args.into_inputs()?;
 
