@@ -5,6 +5,12 @@ use std::collections::HashMap;
 // Synthetically limit the number of iterations to avoid infinite cycle
 const MAX_ITER: usize = 100000;
 
+// Initial number of the coins for the country that owns the city
+const INITIAL_CITY_COINS: i64 = 1000000;
+
+// Divider for the coins that are sent to from city
+const REPRESENTATIVE_PORTION_DIVIDER: i64 = 1000;
+
 type CountriesMap = HashMap<String, CountryDimensions>;
 
 #[derive(Deserialize)]
@@ -66,9 +72,8 @@ impl Matrix {
                     };
 
                     for country_name in countries.keys().cloned() {
-                        // Initial number of the coins for the country that owns the city
                         let coins = if country_name == *cur_country_name {
-                            1000000
+                            INITIAL_CITY_COINS
                         } else {
                             0
                         };
@@ -128,7 +133,7 @@ fn imp_euro_diffusion(country_matrix: Matrix, countries: &CountriesMap) -> Vec<C
                     if !transaction_city.borrow().country.is_empty() {
                         // Send to surounding cities coins of EACH country depending on city current balance
                         for country_name in countries.keys() {
-                            let value = cur_city.borrow().coins[country_name] / 1000;
+                            let value = cur_city.borrow().coins[country_name] / REPRESENTATIVE_PORTION_DIVIDER;
                             *transaction_city
                                 .borrow_mut()
                                 .coins
