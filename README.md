@@ -11,7 +11,7 @@ $ cargo --version
 cargo 1.60.0 (d1fd9fe 2022-03-01)
 ```
 
-In oder to compule the CLI binary run the following command:
+In order to compule the CLI binary run the following command:
 
 ```bash
 cargo build
