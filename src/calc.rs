@@ -131,7 +131,7 @@ fn imp_euro_diffusion(country_matrix: Matrix, countries: &CountriesMap) -> Vec<C
 
                 for transaction_city in transaction_surrounding_cities {
                     if !transaction_city.borrow().country.is_empty() {
-                        // Send to surounding cities coins of EACH country depending on city current balance
+                        // Send to surrounding cities coins of EACH country depending on city current balance
                         for country_name in countries.keys() {
                             let value = cur_city.borrow().coins[country_name] / REPRESENTATIVE_PORTION_DIVIDER;
                             *transaction_city
